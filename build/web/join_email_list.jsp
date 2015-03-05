@@ -33,6 +33,20 @@
       <td><input type="text" name="emailAddress"></td>
     </tr>
     <tr>
+        <td align="right">Career:</td>
+        <td><select name="carrera" size="1">
+                <option>INT</option>
+                <option>ISC</option>
+                <option>ISD</option>
+                <option>ITC</option>
+                <option>ITE</option>
+                <option>ITIC</option>
+                <option>ITM</option>
+                <option>ITS</option>
+                <option>LATI</option>
+            </select></td>
+    </tr>
+    <tr>
       <td></td>
       <td><br><input type="submit" value="Submit"></td>
     </tr>
