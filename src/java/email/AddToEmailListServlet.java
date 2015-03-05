@@ -17,13 +17,14 @@ public class AddToEmailListServlet extends HttpServlet
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String emailAddress = request.getParameter("emailAddress");
+        String carrera = request.getParameter("carrera");
 
         // get a relative file name
         ServletContext context = getServletContext();
         String path = context.getRealPath("/WEB-INF/EmailList.txt");
 
         // use regular Java classes
-        User user = new User(firstName, lastName, emailAddress);
+        User user = new User(firstName, lastName, emailAddress, carrera);
         UserIO.addRecord(user, path);
         
         // store the User object in the request object

@@ -13,7 +13,7 @@ public class UserIO
                 new FileWriter(file, true));
         out.println(user.getEmailAddress()+ "|"
                 + user.getFirstName() + "|"
-                + user.getLastName());        
+                + user.getLastName() + "|" + user.getCareer());        
         out.close();
     }
     
@@ -54,7 +54,8 @@ public class UserIO
             String emailAddress = t.nextToken();
             String firstName = t.nextToken();
             String lastName = t.nextToken();
-            User user = new User(firstName, lastName, emailAddress);
+            String carrera = t.nextToken();
+            User user = new User(firstName, lastName, emailAddress, carrera);
             users.add(user);
             line = in.readLine();
         }
