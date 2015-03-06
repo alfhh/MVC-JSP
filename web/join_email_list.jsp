@@ -5,6 +5,16 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
+<%@page import = "business.User" %>
+<%
+  User user = (User) request.getAttribute("user");
+  String message = (String) request.getAttribute("message");
+
+  if(user == null)
+    user = new User();
+  if(message == null)
+    message = "";
+%>
 <!DOCTYPE html>
 <html>
     
@@ -18,19 +28,21 @@
      email address below. <br>
      Then, click on the Submit button.</p>
 
+  <p><strong><%= message %></strong></p>
+
   <form action="addToEmailList" method="post">
   <table cellspacing="5" border="0">
     <tr>
       <td align="right">First name:</td>
-      <td><input type="text" name="firstName"></td>
+      <td><input type="text" name="firstName" value="<%= user.getFirstName() %>"></td>
     </tr>
     <tr>
       <td align="right">Last name:</td>
-      <td><input type="text" name="lastName"></td>
+      <td><input type="text" name="lastName" value="<%= user.getLastName() %>"></td>
     </tr>
     <tr>
       <td align="right">Email address:</td>
-      <td><input type="text" name="emailAddress"></td>
+      <td><input type="text" name="emailAddress" value="<%= user.getEmailAddress()%>"></td>
     </tr>
     <tr>
         <td align="right">Career:</td>

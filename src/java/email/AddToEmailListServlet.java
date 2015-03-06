@@ -18,20 +18,32 @@ public class AddToEmailListServlet extends HttpServlet
         String lastName = request.getParameter("lastName");
         String emailAddress = request.getParameter("emailAddress");
         String carrera = request.getParameter("carrera");
-
-        // get a relative file name
-        ServletContext context = getServletContext();
-        String path = context.getRealPath("/WEB-INF/EmailList.txt");
-
-        // use regular Java classes
         User user = new User(firstName, lastName, emailAddress, carrera);
-        UserIO.addRecord(user, path);
+        String url = "";
+        String message = "";
+        
+        if(firstName.length() == 0 || lastName.length() == 0 || emailAddress.length() == 0){
+            message = "Form incomplete, please fill the blank spaces";
+            url = "/join_email_list.jsp";
+        }
+
+        else {
+            message = "";
+
+            // get a relative file name
+            ServletContext context = getServletContext();
+            String path = context.getRealPath("/WEB-INF/EmailList.txt");
+            // use regular Java classes
+            UserIO.addRecord(user, path);
+            // forward request and response objects to JSP page
+            url = "/display_email_entry.jsp";
+        }
         
         // store the User object in the request object
         request.setAttribute("user", user);
+        request.setAttribute("message", message);
         
-        // forward request and response objects to JSP page
-        String url = "/display_email_entry.jsp";
+        
         RequestDispatcher dispatcher =
              getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);              
